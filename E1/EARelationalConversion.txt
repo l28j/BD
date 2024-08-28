@@ -1,0 +1,37 @@
+
+A(__a1__, a2 a3)
+
+B(__a1__, b1)
+  a1: FK(A)
+C(__a1__)
+  a1: FK(A)
+
+E(__e1__, __e2__)
+
+F(__f1__, __f2__, f3)
+G(__g1__)
+
+H(__h1__, h2)
+
+D(__a1__, __f1__, __f2__, __g1__, __h1__, __d1__)
+  a1: FK(A)
+  f1, f2: FK(F), FK(F)
+  g1: FK(G)
+  h1: FK(h)
+
+rCE(__a1__, e1, e2, rce1)
+  a1: FK(C)
+  e1, e2: FK(E) NOT NULL, FK(E) NOT NULL
+
+rAFG(__a1__, __f1__, __f2__, __g1__,rHrAFG)
+  a1: FK(A)
+  f1, f2: FK(F) NOT NULL, FK(F) NOT NULL
+  g1: FK(G)
+  rHrAFG :                         
+    h1: FK(H) NOT NULL
+
+RI-1 - Each G can only occur once for each pair A-F.
+RI-2 - Any h1 in H must exist in rHrAFG.
+RI-3 - Any pair f1, f2 in F must exist in rAFG.
+RI-4 - Each value of a1 must exist in B or in C (never in both simultaneously).
+RI-5 - All a1, f1, f2, and g1 in rAFG must be in rHrAFG.
